@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./expansion-panel.component.scss']
 })
 export class ExpansionPanelComponent {
+  @Input() titulo: string;
+  isExpanded: boolean = false;
 
+  togglePanel() {
+    this.isExpanded = !this.isExpanded;
+  }
 }

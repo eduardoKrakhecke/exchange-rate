@@ -1,3 +1,12 @@
 <div class="container">
-  <p>expansion-panel works!</p>
+  <div class="panel">
+    <div class="panel-header" (click)="togglePanel()">
+      <p class="panel-title">{{titulo.toUpperCase()}}</p>
+      <img src="assets/icons/less.svg" class="toggle-icon" *ngIf="isExpanded" />
+      <img src="assets/icons/more.svg" class="toggle-icon" *ngIf="!isExpanded" />
+    </div>
+    <div class="panel-content" [ngClass]="{'expanded': isExpanded}">
+        <ng-content></ng-content>
+    </div>
+  </div>
 </div>
