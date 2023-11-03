@@ -1,0 +1,20 @@
+@import '../../../styles/variables.scss';
+
+.button {
+  background-color: $primary-color;
+  color: $neutral-white;
+  border: none;
+  border-radius: 100px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  width: 330px;
+  height: 48px;
+
+  &:hover {
+    background-color: $primary-color-soft;
+  }
+}

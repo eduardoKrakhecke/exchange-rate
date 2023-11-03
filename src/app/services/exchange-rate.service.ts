@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
+import { api_key } from "@app/constants/api-key";
+import { CurrencyRate } from "@app/models/currency-rate";
+import {DailyRate} from "@app/models/daily-rate";
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +18,16 @@ export class ExchangeRateService {
 
   constructor(private http: HttpClient) { }
 
-  getCurrentExchangeRate(): Observable<any> {
-    return this.http.get<any>(`${this.BASE_URL}/currentExchangeRate?apiKey=RVZG0GHEV2KORLNA&from_symbol=EUR&to_symbol=BRL`).pipe(
+  getCurrentExchangeRate(fromSymbol: string): Observable<CurrencyRate> {
+    return this.http.get<CurrencyRate>(`${this.BASE_URL}/currentExchangeRate?apiKey=${api_key}&from_symbol=${fromSymbol}&to_symbol=BRL`).pipe(
       map((response) => {
         return response
       })
     );
   }
 
-  getDailyExchangeRate(): Observable<any> {
-    return this.http.get<any>(`${this.BASE_URL}/dailyExchangeRate?apiKey=RVZG0GHEV2KORLNA&from_symbol=EUR&to_symbol=BRL`).pipe(
+  getDailyExchangeRate(fromSymbol: string): Observable<DailyRate> {
+    return this.http.get<DailyRate>(`${this.BASE_URL}/dailyExchangeRate?apiKey=${api_key}&from_symbol=${fromSymbol}&to_symbol=BRL`).pipe(
       map((response) => {
         return response
       })

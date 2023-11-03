@@ -1,1 +1,27 @@
-<p>{{title}}</p>
+<app-nav></app-nav>
+<div class="center-container">
+  <app-input value="{{code}}" label="Enter the currency code"></app-input>
+</div>
+<div class="center-container">
+  <app-button (buttonClick)="handleClick()"> exchange result</app-button>
+</div>
+  <hr class="container-line">
+
+<div class="container-result-title">
+  <div class="container-result-date">
+    <p class="title">Exchange rate now</p>
+    <p class="subtitle">09/03/2022 - 15h09</p>
+  </div>
+  <div class="container-symbol">
+    <p class="symbol">USD/BRL</p>
+  </div>
+</div>
+<div class="container-result-value">
+    <p class="result-value">R$ 5,00</p>
+</div>
+<app-expansion-panel></app-expansion-panel>
+
+
+<app-footer text="Copyright 2023 - Action Labs"></app-footer>
+
+
