@@ -1,4 +1,4 @@
-<mat-form-field>
-  <mat-label>{{ label }}</mat-label>
-  <input matInput [(ngModel)]="value" (input)="onInputChange($event)">
-</mat-form-field>
+<div class="custom-input">
+  <input [(ngModel)]="value" (input)="onInputChange($event)" id="custom-input" type="text" placeholder="" />
+  <label for="custom-input">{{label}}</label>
+</div>

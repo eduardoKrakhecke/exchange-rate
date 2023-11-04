@@ -3,7 +3,7 @@
  <app-input [(value)]="code" label="Enter the currency code"></app-input>
 </div>
 <div class="center-container">
-  <app-button (buttonClick)="handleClickCurrencyRate()"> exchange result</app-button>
+  <app-button [isDisabled]="code.trim() === ''" (buttonClick)="handleClickCurrencyRate()"> exchange result</app-button>
 </div>
   <hr class="container-line">
 
@@ -21,97 +21,27 @@
     <p class="result-value">{{currencyRate.exchangeRate | currency:'BRL':'symbol'}}</p>
   </div>
   <app-expansion-panel titulo="Last 30 Days" (togglePanelEvent)="handleClickDailyRate()">
-    <app-card>
-      <p class="data-value">07/03/2022</p>
-      <div class="container-result">
-        <div class="flex-container">
-          <p class="label">Open:</p>
-          <p class="result">5.066</p>
-          <p class="label">High:</p>
-          <p class="result">5.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close:</p>
-          <p class="result">7.066</p>
-          <p class="label">Low:</p>
-          <p class="result">3.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close DIff(%):</p>
-          <p class="result-diff">1.15%</p>
-        </div>
-      </div>
-
-    </app-card>
-
-    <app-card>
-      <p class="data-value">07/03/2022</p>
-      <div class="container-result">
-        <div class="flex-container">
-          <p class="label">Open:</p>
-          <p class="result">5.066</p>
-          <p class="label">High:</p>
-          <p class="result">5.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close:</p>
-          <p class="result">7.066</p>
-          <p class="label">Low:</p>
-          <p class="result">3.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close DIff(%):</p>
-          <p class="result-diff">1.15%</p>
-        </div>
-      </div>
-
-    </app-card>
-
-    <app-card>
-      <p class="data-value">07/03/2022</p>
-      <div class="container-result">
-        <div class="flex-container">
-          <p class="label">Open:</p>
-          <p class="result">5.066</p>
-          <p class="label">High:</p>
-          <p class="result">5.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close:</p>
-          <p class="result">7.066</p>
-          <p class="label">Low:</p>
-          <p class="result">3.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close DIff(%):</p>
-          <p class="result-diff">1.15%</p>
-        </div>
-      </div>
-
-    </app-card>
-
-    <app-card>
-      <p class="data-value">07/03/2022</p>
-      <div class="container-result">
-        <div class="flex-container">
-          <p class="label">Open:</p>
-          <p class="result">5.066</p>
-          <p class="label">High:</p>
-          <p class="result">5.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close:</p>
-          <p class="result">7.066</p>
-          <p class="label">Low:</p>
-          <p class="result">3.066</p>
-        </div>
-        <div class="flex-container">
-          <p class="label">Close DIff(%):</p>
-          <p class="result-diff">1.15%</p>
-        </div>
-      </div>
-
-    </app-card>
+    <div class="card-container">
+      <app-card>
+        <p class="data-value">07/03/2022</p>
+          <div class="flex-container">
+            <p class="label">Open:</p>
+            <p class="result">5.0669</p>
+            <p class="label">High:</p>
+            <p class="result">5.0669</p>
+          </div>
+          <div class="flex-container">
+            <p class="label">Close:</p>
+            <p class="result">4.0669</p>
+            <p class="label">Low:</p>
+            <p class="result">5.0669</p>
+          </div>
+          <div class="flex-container-diff">
+            <p class="label-diff">Close DIff(%):</p>
+            <p class="result-diff">1.15%</p>
+          </div>
+      </app-card>
+    </div>
 
   </app-expansion-panel>
 </div>

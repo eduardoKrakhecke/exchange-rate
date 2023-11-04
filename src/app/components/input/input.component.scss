@@ -1,0 +1,39 @@
+@import '../../../styles/variables.scss';
+
+.custom-input {
+  position: relative;
+}
+input[type=text] {
+  font-size: 16px ;
+  background: transparent;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  padding: 5px;
+  transition: padding 0.4s;
+  width: 330px;
+}
+input[type=text]:placeholder-shown + label {
+  color: $neutral-dark;
+  font-size: 16px;
+  left: 5px;
+  top: 5px;
+}
+label,
+input[type=text]:focus + label{
+  color: $primary-color;
+  font-size: 12px;
+  left: 2px;
+  pointer-events: none;
+  position: absolute;
+  top: 1px;
+  transition: top 0.4s, left 0.4s, font-size 0.4s;
+}
+input[type=text]::placeholder{
+  color: transparent;
+}
+input[type=text]:focus,
+input[type=text]:not(:placeholder-shown) {
+  border-bottom: solid 1px $primary-color;
+  outline: none;
+  padding: 20px 5px 5px;
+}

@@ -34,8 +34,15 @@ export class AppComponent {
   getDailyRate(code: string): void {
     this.exchangeRateService.getDailyExchangeRate(code).subscribe(
       (response: DailyRate) => {
-        this.dailyRate = response
-        console.log("daily rate" ,response)
+        if(response.success) {
+          const thirtyDaysAgo = new Date();
+          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+          this.dailyRate.data = response.data.filter((item) => {
+            const itemDate = new Date(item.date);
+            return itemDate > thirtyDaysAgo;
+          })
+        }
+        console.log("daily rate" ,this.dailyRate)
       },
       (e: any) => {
         console.error(e);
