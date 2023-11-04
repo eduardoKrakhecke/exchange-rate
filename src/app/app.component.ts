@@ -9,20 +9,20 @@ import { DailyRate } from "@app/models/daily-rate";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'exchange-rate';
-  code = ''
+
+  code: string = ''
+  dailyRate: DailyRate
+  currencyRate: CurrencyRate
+  showComponents: boolean = false
 
   constructor(private exchangeRateService: ExchangeRateService) {
   }
 
-  ngOnInit(): void {
-    //this.getCurrencyRate()
-    //this.getDailyRate()
-  }
-
-  getCurrencyRate(): void {
-    this.exchangeRateService.getCurrentExchangeRate('USD').subscribe(
+  getCurrencyRate(code: string): void {
+    this.exchangeRateService.getCurrentExchangeRate(code).subscribe(
       (response: CurrencyRate) => {
+        this.currencyRate = response
+        this.showComponents = true//response.success
         console.log("curency rate" ,response)
       },
       (e: any) => {
@@ -31,9 +31,10 @@ export class AppComponent {
     )
   }
 
-  getDailyRate(): void {
-    this.exchangeRateService.getDailyExchangeRate('USD').subscribe(
+  getDailyRate(code: string): void {
+    this.exchangeRateService.getDailyExchangeRate(code).subscribe(
       (response: DailyRate) => {
+        this.dailyRate = response
         console.log("daily rate" ,response)
       },
       (e: any) => {
@@ -42,7 +43,11 @@ export class AppComponent {
     )
   }
 
-  handleClick(): void {
-    console.log('Botão azul clicado!');
+  handleClickCurrencyRate(): void {
+    this.getCurrencyRate(this.code)
+  }
+
+  handleClickDailyRate(): void {
+    this.getDailyRate(this.code)
   }
 }

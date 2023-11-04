@@ -12,10 +12,10 @@ import { MatInputModule } from '@angular/material/input';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
+import { InputComponent } from './components/input/input.component';
 
 
 @NgModule({
@@ -23,10 +23,10 @@ import { ExpansionPanelComponent } from './components/expansion-panel/expansion-
     AppComponent,
     NavComponent,
     FooterComponent,
-    InputComponent,
     ButtonComponent,
     CardComponent,
-    ExpansionPanelComponent
+    ExpansionPanelComponent,
+    InputComponent
   ],
   imports: [
     HttpClientModule,

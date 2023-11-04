@@ -1,4 +1,4 @@
-import { Component, Input  } from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -7,6 +7,7 @@ import { Component, Input  } from '@angular/core';
 })
 export class ExpansionPanelComponent {
   @Input() titulo: string;
+  @Output() togglePanelEvent: EventEmitter<any> = new EventEmitter<any>();
   isExpanded: boolean = false;
 
   togglePanel() {

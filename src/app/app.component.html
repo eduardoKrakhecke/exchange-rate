@@ -1,29 +1,120 @@
 <app-nav></app-nav>
 <div class="center-container">
-  <app-input value="{{code}}" label="Enter the currency code"></app-input>
+ <app-input [(value)]="code" label="Enter the currency code"></app-input>
 </div>
 <div class="center-container">
-  <app-button (buttonClick)="handleClick()"> exchange result</app-button>
+  <app-button (buttonClick)="handleClickCurrencyRate()"> exchange result</app-button>
 </div>
   <hr class="container-line">
 
-<div class="container-result-title">
-  <div class="container-result-date">
-    <p class="title">Exchange rate now</p>
-    <p class="subtitle">09/03/2022 - 15h09</p>
+<div *ngIf="showComponents">
+  <div class="container-result-title" >
+    <div class="container-result-date">
+      <p class="title">Exchange rate now</p>
+      <p class="subtitle">{{currencyRate.lastUpdatedAt | date: 'dd/MM/yyyy - HH:mm'}}</p>
+    </div>
+    <div class="container-symbol">
+      <p class="symbol">{{currencyRate.fromSymbol}}/BRL</p>
+    </div>
   </div>
-  <div class="container-symbol">
-    <p class="symbol">USD/BRL</p>
+  <div class="container-result-value">
+    <p class="result-value">{{currencyRate.exchangeRate | currency:'BRL':'symbol'}}</p>
   </div>
-</div>
-<div class="container-result-value">
-    <p class="result-value">R$ 5,00</p>
-</div>
-<app-expansion-panel titulo="Last 30 Days">
-  <app-card></app-card>
-  <p>dentro do painel</p>
-</app-expansion-panel>
+  <app-expansion-panel titulo="Last 30 Days" (togglePanelEvent)="handleClickDailyRate()">
+    <app-card>
+      <p class="data-value">07/03/2022</p>
+      <div class="container-result">
+        <div class="flex-container">
+          <p class="label">Open:</p>
+          <p class="result">5.066</p>
+          <p class="label">High:</p>
+          <p class="result">5.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close:</p>
+          <p class="result">7.066</p>
+          <p class="label">Low:</p>
+          <p class="result">3.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close DIff(%):</p>
+          <p class="result-diff">1.15%</p>
+        </div>
+      </div>
 
+    </app-card>
+
+    <app-card>
+      <p class="data-value">07/03/2022</p>
+      <div class="container-result">
+        <div class="flex-container">
+          <p class="label">Open:</p>
+          <p class="result">5.066</p>
+          <p class="label">High:</p>
+          <p class="result">5.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close:</p>
+          <p class="result">7.066</p>
+          <p class="label">Low:</p>
+          <p class="result">3.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close DIff(%):</p>
+          <p class="result-diff">1.15%</p>
+        </div>
+      </div>
+
+    </app-card>
+
+    <app-card>
+      <p class="data-value">07/03/2022</p>
+      <div class="container-result">
+        <div class="flex-container">
+          <p class="label">Open:</p>
+          <p class="result">5.066</p>
+          <p class="label">High:</p>
+          <p class="result">5.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close:</p>
+          <p class="result">7.066</p>
+          <p class="label">Low:</p>
+          <p class="result">3.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close DIff(%):</p>
+          <p class="result-diff">1.15%</p>
+        </div>
+      </div>
+
+    </app-card>
+
+    <app-card>
+      <p class="data-value">07/03/2022</p>
+      <div class="container-result">
+        <div class="flex-container">
+          <p class="label">Open:</p>
+          <p class="result">5.066</p>
+          <p class="label">High:</p>
+          <p class="result">5.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close:</p>
+          <p class="result">7.066</p>
+          <p class="label">Low:</p>
+          <p class="result">3.066</p>
+        </div>
+        <div class="flex-container">
+          <p class="label">Close DIff(%):</p>
+          <p class="result-diff">1.15%</p>
+        </div>
+      </div>
+
+    </app-card>
+
+  </app-expansion-panel>
+</div>
 
 <app-footer text="Copyright 2023 - Action Labs"></app-footer>
 
