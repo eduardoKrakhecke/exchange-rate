@@ -21,9 +21,14 @@ export class AppComponent {
   getCurrencyRate(code: string): void {
     this.exchangeRateService.getCurrentExchangeRate(code).subscribe(
       (response: CurrencyRate) => {
-        this.currencyRate = response
-        this.showComponents = true//response.success
-        console.log("curency rate" ,response)
+        this.showComponents = response.success
+        if(response.success) {
+          this.currencyRate = response
+        } else {
+          alert('Problema ao buscar os dados')
+        }
+
+        console.log("curency rate" ,this.currencyRate)
       },
       (e: any) => {
         console.error(e);
@@ -35,12 +40,10 @@ export class AppComponent {
     this.exchangeRateService.getDailyExchangeRate(code).subscribe(
       (response: DailyRate) => {
         if(response.success) {
-          const thirtyDaysAgo = new Date();
-          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-          this.dailyRate.data = response.data.filter((item) => {
-            const itemDate = new Date(item.date);
-            return itemDate > thirtyDaysAgo;
-          })
+          this.dailyRate = response
+          this.filterDaysAgo(response)
+        } else {
+          alert('Problema ao buscar os dados dos últimos 30 dias')
         }
         console.log("daily rate" ,this.dailyRate)
       },
@@ -48,6 +51,19 @@ export class AppComponent {
         console.error(e);
       }
     )
+  }
+
+  calculateCloseDiff() {
+
+  }
+
+  filterDaysAgo(response: DailyRate): void {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    this.dailyRate.data = response.data.filter((item) => {
+      const itemDate = new Date(item.date);
+      return itemDate > thirtyDaysAgo;
+    })
   }
 
   handleClickCurrencyRate(): void {

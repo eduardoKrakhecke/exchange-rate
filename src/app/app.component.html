@@ -21,27 +21,30 @@
     <p class="result-value">{{currencyRate.exchangeRate | currency:'BRL':'symbol'}}</p>
   </div>
   <app-expansion-panel titulo="Last 30 Days" (togglePanelEvent)="handleClickDailyRate()">
-    <div class="card-container">
-      <app-card>
-        <p class="data-value">07/03/2022</p>
+    <div *ngFor="let data of dailyRate?.data">
+      <div class="card-container">
+        <app-card>
+          <p class="data-value">{{data.date}}</p>
           <div class="flex-container">
             <p class="label">Open:</p>
-            <p class="result">5.0669</p>
+            <p class="result">{{data.open}}</p>
             <p class="label">High:</p>
-            <p class="result">5.0669</p>
+            <p class="result">{{data.high}}</p>
           </div>
           <div class="flex-container">
             <p class="label">Close:</p>
-            <p class="result">4.0669</p>
+            <p class="result">{{data.close}}</p>
             <p class="label">Low:</p>
-            <p class="result">5.0669</p>
+            <p class="result">{{data.low}}</p>
           </div>
           <div class="flex-container-diff">
             <p class="label-diff">Close DIff(%):</p>
             <p class="result-diff">1.15%</p>
           </div>
-      </app-card>
+        </app-card>
+      </div>
     </div>
+
 
   </app-expansion-panel>
 </div>

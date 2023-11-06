@@ -18,6 +18,7 @@ import { ExpansionPanelComponent } from './components/expansion-panel/expansion-
 import { InputComponent } from './components/input/input.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { InputComponent } from './components/input/input.component';
     ButtonComponent,
     CardComponent,
     ExpansionPanelComponent,
-    InputComponent
+    InputComponent,
   ],
   imports: [
     HttpClientModule,
