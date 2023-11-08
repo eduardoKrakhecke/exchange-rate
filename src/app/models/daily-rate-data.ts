@@ -4,4 +4,5 @@ export class DailyRateData {
   high: number
   low: number
   open: number
+  closeDiffPercentage: number
 }

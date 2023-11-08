@@ -3,7 +3,7 @@
  <app-input [(value)]="code" label="Enter the currency code"></app-input>
 </div>
 <div class="center-container">
-  <app-button [isDisabled]="code.trim() === ''" (buttonClick)="handleClickCurrencyRate()"> exchange result</app-button>
+  <app-button [isDisabled]="code.trim() === '' || code.trim().length < 3" (buttonClick)="handleClickCurrencyRate()"> exchange result</app-button>
 </div>
   <hr class="container-line">
 
@@ -21,30 +21,32 @@
     <p class="result-value">{{currencyRate.exchangeRate | currency:'BRL':'symbol'}}</p>
   </div>
   <app-expansion-panel titulo="Last 30 Days" (togglePanelEvent)="handleClickDailyRate()">
-    <div *ngFor="let data of dailyRate?.data">
-      <div class="card-container">
+    <div class="card-container">
+      <div *ngFor="let data of dailyRate?.data" class="card-item">
         <app-card>
-          <p class="data-value">{{data.date}}</p>
+          <p class="data-value">{{data.date | date: 'dd/MM/yyyy' }}</p>
           <div class="flex-container">
             <p class="label">Open:</p>
-            <p class="result">{{data.open}}</p>
+            <p class="result">R$ {{data.open | number:'1.2-4'}}</p>
             <p class="label">High:</p>
-            <p class="result">{{data.high}}</p>
+            <p class="result">R$ {{data.high | number:'1.2-4'}}</p>
           </div>
           <div class="flex-container">
             <p class="label">Close:</p>
-            <p class="result">{{data.close}}</p>
+            <p class="result">R$ {{data.close | number:'1.2-4'}}</p>
             <p class="label">Low:</p>
-            <p class="result">{{data.low}}</p>
+            <p class="result">R$ {{data.low | number:'1.2-4'}}</p>
           </div>
           <div class="flex-container-diff">
             <p class="label-diff">Close DIff(%):</p>
-            <p class="result-diff">1.15%</p>
+            <p [class.result-diff]="true"
+               [ngStyle]="{'color': data.closeDiffPercentage < 0 ? '#E54E4E' : '#69c669'}">
+              {{data.closeDiffPercentage | number:'1.2-2'}}%
+            </p>
           </div>
         </app-card>
       </div>
     </div>
-
 
   </app-expansion-panel>
 </div>

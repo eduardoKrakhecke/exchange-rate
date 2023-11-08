@@ -42,6 +42,7 @@ export class AppComponent {
         if(response.success) {
           this.dailyRate = response
           this.filterDaysAgo(response)
+          this.calculateCloseDiff()
         } else {
           alert('Problema ao buscar os dados dos últimos 30 dias')
         }
@@ -53,8 +54,16 @@ export class AppComponent {
     )
   }
 
-  calculateCloseDiff() {
-
+  calculateCloseDiff(): void {
+    this.dailyRate.data = this.dailyRate.data.map((currentData, index, array) => {
+      if (index > 0) {
+        const previousClose = array[index - 1].close;
+        const currentClose = currentData.close;
+        const difference = (currentClose - previousClose) / previousClose;
+        currentData.closeDiffPercentage = difference * 100;
+      }
+      return currentData;
+    });
   }
 
   filterDaysAgo(response: DailyRate): void {
